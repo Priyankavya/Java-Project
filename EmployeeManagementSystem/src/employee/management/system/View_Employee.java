@@ -23,7 +23,7 @@ public class View_Employee extends JFrame implements ActionListener{
 	 View_Employee()  {
 		// TODO Auto-generated constructor stub
 		
-		getContentPane().setBackground(Color.red);
+		getContentPane().setBackground(Color.orange);
 		JLabel search =new JLabel("Search By Employee Id");
 		search.setBounds(20,20,150,20);
 		add(search);
@@ -64,22 +64,26 @@ public class View_Employee extends JFrame implements ActionListener{
 		
 		Search=new JButton("search");
 		Search.setBounds(20, 70, 80, 20);
-		add(search);
+		Search.addActionListener(this);
+		add(Search);
 		
 		print=new JButton("print");
 		print.setBounds(120, 70, 80, 20);
+		print.addActionListener(this);
 		add(print);
 		
 		update=new JButton("Update");
 		update.setBounds(220, 70, 80, 20);
+		update.addActionListener(this);
 		add(update);
 		
 		back=new JButton("Back");
 		back.setBounds(320, 70, 80, 20);
+		back.addActionListener(this);
 		add(back);
 		
 		setSize(900, 700);
-		setLocale(null);
+		setLayout(null);
 		setLocation(300, 100);
 		setVisible(true);
 		
@@ -90,7 +94,44 @@ public class View_Employee extends JFrame implements ActionListener{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(e.getSource()==Search)
+		{
+			String query="select * from employee where empid= '"+choiceEmp.getSelectedItem()+"'";
+			
+			
+		try {
+			
+			conn c=new conn();
+			ResultSet resultset=c.statement.executeQuery(query);
+			table.setModel(DbUtils.resultSetToTableModel(resultset));
+		} catch (Exception e2) {
+			e2.printStackTrace();
+			// TODO: handle exception
+		}
+		}
+		
+		else if(e.getSource()==print)
+		{
+			try {
+				table.print();
+				
+			} catch (Exception e2) {
+				// TODO: handle exception
+				e2.printStackTrace();
+			}
+		}
+		
+		else if(e.getSource()==update)
+		{
+			setVisible(false);
+			
+		}
+		
+		else
+		{
+			setVisible(false);
+			new Main_class();
+		}
 		
 	}
 }

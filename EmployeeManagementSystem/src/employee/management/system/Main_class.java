@@ -38,7 +38,8 @@ public class Main_class  extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				new AddEmployee();
+				setVisible(false);
 				
 			}
 		});
@@ -53,7 +54,8 @@ public class Main_class  extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				new View_Employee();
+				setVisible(false);
 			}
 		});
 		img.add(view);

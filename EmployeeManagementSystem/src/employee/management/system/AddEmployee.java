@@ -158,6 +158,7 @@ public class AddEmployee extends JFrame implements ActionListener {
 		back.setBounds(500, 450, 250, 40);
 		back.setBackground(Color.black);
 		back.setForeground(Color.white);
+		back.addActionListener(this);
 		add(back);
 		
 		
@@ -204,7 +205,11 @@ public class AddEmployee extends JFrame implements ActionListener {
 			}
 		}
 		
-		
+		else
+		{
+			setVisible(false);
+			new Main_class();
+		}
 		
 	}
 
